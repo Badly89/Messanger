@@ -4,11 +4,36 @@
   "description": "messanger on ReactJs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=development",
+    "start": "webpack serve"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^5.28.0"
-  }
+    "@babel/core": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^11.0.1",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Badly89/Messanger.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Badly89/Messanger/issues"
+  },
+  "homepage": "https://github.com/Badly89/Messanger#readme"
 }
