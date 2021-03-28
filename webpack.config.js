@@ -1,38 +1,39 @@
 const path = require("path");
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: path.join(__dirname, "src", "index.js"),
     output: {
-        filename: 'bundle.js',
-        path: path.join(__dirname, 'public')
+        path: path.join(__dirname, "build"),
+        filename: "bundle.js",
     },
+    devtool: 'source-map',
     module: {
         rules: [{
-            loader: 'babel-loader',
-            test: /\.js$/,
-            exclude: /node_modules/
+            test: /.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader",
+            },
         },
         {
             test: /\.(scss|css)$/,
-            use: ['css-loader', 'sass-loader'],
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './public/index.html'), // шаблон
             filename: 'index.html', // название выходного файла
+            template: path.join(__dirname, "public", "index.html"),
+
         }),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css",
+        }),
+
     ],
-    mode: 'development',
-    devServer: {
-        historyApiFallback: true,
-        contentBase: path.resolve(__dirname, './public'),
-        open: true,
-        compress: true,
-        hot: true,
-        port: 8080,
-    },
+
 };
