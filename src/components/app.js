@@ -22,7 +22,7 @@ export const App = () => {
     const lastMess = messages[messages-1];
     let timer;
 
-     if(lastMess.sender === AUTHOR.HUMAN){
+     if(lastMess?.sender !== AUTHOR.BOT){
      timer = setTimeout(() => {
             sendMessage({text: "Не приставай ко мне, я робот!", sender: AUTHOR.BOT });
             }, 1000);       
