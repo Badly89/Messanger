@@ -1,40 +1,35 @@
 import React, { useEffect, useCallback, useState } from "react";
-import {MessageField} from './MessageField';
-import {AUTHOR } from '../utils/constant';
-import {Input} from './input';
-import "../styles/style.css";
+import { MessageField } from "./messageField";
+import { AUTHORS } from "../utils/constant";
+import { InputText } from "./input";
 
 const messagesBot = [
-  { text: "Привет!", sender: AUTHOR.BOT },
-  { text: "Как дела?", sender: AUTHOR.BOT },
+  { text: "Привет!", sender: AUTHORS.BOT },
+  { text: "Как дела?", sender: AUTHORS.BOT },
 ];
-
-
 export const App = () => {
   const [messages, setMessages] = useState(messagesBot);
-
-  const sendMessage = useCallback((newMessage) => { 
-    setMessages((prevMess) => [...prevMess, newMessage]); }
-    ,[]);
-
+  const sendMessage = useCallback((newMessage) => {
+    setMessages((prevMess) => [...prevMess, newMessage]);
+  }, []);
 
   useEffect(() => {
-    const lastMess = messages[messages-1];
-    let timer;
-
-     if(lastMess?.sender !== AUTHOR.BOT){
-     timer = setTimeout(() => {
-            sendMessage({text: "Не приставай ко мне, я робот!", sender: AUTHOR.BOT });
-            }, 1000);       
-      }
-     return()=>clearTimeout(timer);
+    const lastMessages = messages[messages.length - 1];
+    let timeout;
+    if (lastMessages?.sender !== AUTHORS.BOT) {
+      timeout = setTimeout(() => {
+        sendMessage({
+          text: "Не приставай ко мне, я робот!",
+          sender: AUTHORS.BOT,
+        });
+      }, 1000);
+    }
   }, [messages]);
-
 
   return (
     <>
-    <MessageField messages={messages} />
-    <Input onSendMessage = {sendMessage} />
+      <MessageField messages={messages} />
+      <InputText onSendMessage={sendMessage} />
     </>
   );
 };
