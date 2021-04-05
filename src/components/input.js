@@ -22,9 +22,9 @@ export const InputText = ({ onSendMessage }) => {
         type="text"
         value={value}
         onChange={handleChange}
-        style={{ fontSize: "18px" }}
+        style={{ fontSize: "16px" }}
       />
-      <Fab type="submit">
+      <Fab type="submit" size="small" color="primary">
         <SendRoundedIcon />
       </Fab>
     </form>
