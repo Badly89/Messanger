@@ -1,19 +1,19 @@
-.message-field {
-  display: flex;
-  flex-direction: column;
-  background-color: #e2e2e2;
-  height: fit-content;
-  height: 50vw;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
 .layout {
   height: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
   // flex-direction: column;
+}
+.message-field {
+  display: flex;
+  flex-direction: column;
+  background-color: #e2e2e2;
+  height: fit-content;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+  margin-right: 50px;
 }
 
 .message {
@@ -29,10 +29,18 @@
   font-size: 14px;
 }
 .list-chat {
-  width: 40%;
+  width: 25%;
+  height: 470px;
   display: flex;
   align-items: flex-start;
+  justify-content: center;
+  background-color: lightslategrey;
 }
 .chat-content {
-  width: 60%;
+  width: 75%;
+  height: 520px;
+}
+
+h1 {
+  text-align: center;
 }

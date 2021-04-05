@@ -4,15 +4,15 @@ import { List, ListItem } from "@material-ui/core";
 
 const chats = [
   {
-    id: "1",
+    id: "id1",
     name: "Комната №1",
   },
   {
-    id: "2",
+    id: "id2",
     name: "Комната №2",
   },
   {
-    id: "3",
+    id: "id3",
     name: "Комната №3",
   },
 ];

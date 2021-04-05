@@ -1,3 +1,14 @@
+.layout {
+  height: 100%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .message-field {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,20 +21,10 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  height: 50vw;
+  height: 100%;
   padding: 20px;
   overflow-y: scroll;
-}
-
-.layout {
-  height: 100%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin-right: 50px;
 }
 
 .message {
@@ -40,16 +41,26 @@
 }
 
 .list-chat {
-  width: 40%;
+  width: 25%;
+  height: 470px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: lightslategrey;
 }
 
 .chat-content {
-  width: 60%;
+  width: 75%;
+  height: 520px;
+}
+
+h1 {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

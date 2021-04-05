@@ -5,7 +5,7 @@ import "../styles/style.css";
 export const MessageField = ({ messages }) => {
   return (
     <>
-      {messages.map(({ text, sender }, index) => (
+      {messages.map(({ text, sender, id }, index) => (
         <div
           key={index}
           className="message"
