@@ -1,12 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./components/app";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Routes } from "./components/routes";
 import "./styles/style.css";
 
-ReactDOM.render(
-  <MuiThemeProvider>
-    <App />
-  </MuiThemeProvider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<Routes />, document.getElementById("root"));

@@ -1,13 +1,18 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { MessageField } from "./messageField";
+import { MessageField } from "./messagefield";
 import { AUTHORS } from "../utils/constant";
 import { InputText } from "./input";
+import { Header } from "./header";
+import { ChatList } from "./chatlist";
+import { useParams } from "react-router";
+import "../styles/style.css";
 
 const messagesBot = [
-  { text: "Привет!", sender: AUTHORS.BOT },
-  { text: "Как дела?", sender: AUTHORS.BOT },
+  { text: "Привет!", sender: AUTHORS.BOT, id: "1" },
+  { text: "Как дела?", sender: AUTHORS.BOT, id: "2" },
 ];
 export const App = () => {
+  const { chatId } = useParams();
   const [messages, setMessages] = useState(messagesBot);
   const sendMessage = useCallback((newMessage) => {
     setMessages((prevMess) => [...prevMess, newMessage]);
@@ -21,15 +26,23 @@ export const App = () => {
         sendMessage({
           text: "Не приставай ко мне, я робот!",
           sender: AUTHORS.BOT,
+          id: messages.length + 1,
         });
-      }, 1000);
+      }, 2000);
     }
   }, [messages]);
 
   return (
     <>
-      <MessageField messages={messages} />
-      <InputText onSendMessage={sendMessage} />
+      <div className="layout">
+        <ChatList />
+        <div className="chat-content">
+          <div className="message-field">
+            <MessageField messages={messages} />
+          </div>
+          <InputText onSendMessage={sendMessage} />
+        </div>
+      </div>
     </>
   );
 };

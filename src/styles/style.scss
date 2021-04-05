@@ -2,20 +2,18 @@
   display: flex;
   flex-direction: column;
   background-color: #e2e2e2;
-  height: 50%;
-  width: 100%;
+  height: fit-content;
+  height: 50vw;
   padding: 20px;
   overflow-y: scroll;
 }
 
 .layout {
   height: 100%;
-  width: 50%;
   margin: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  // flex-direction: column;
 }
 
 .message {
@@ -30,10 +28,11 @@
   color: gray;
   font-size: 14px;
 }
-#root {
+.list-chat {
+  width: 40%;
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 75%;
-  align-items: center;
+  align-items: flex-start;
+}
+.chat-content {
+  width: 60%;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AUTHORS } from "../utils/constant";
-import { TextField, FloatingActionButton } from "material-ui";
-import SendIcon from "material-ui/svg-icons/content/send";
+import { TextField, Fab } from "@material-ui/core";
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
 export const InputText = ({ onSendMessage }) => {
   const [value, setValue] = useState("");
@@ -24,9 +24,9 @@ export const InputText = ({ onSendMessage }) => {
         onChange={handleChange}
         style={{ fontSize: "18px" }}
       />
-      <FloatingActionButton type="submit">
-        <SendIcon />
-      </FloatingActionButton>
+      <Fab type="submit">
+        <SendRoundedIcon />
+      </Fab>
     </form>
   );
 };
