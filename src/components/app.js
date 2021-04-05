@@ -2,15 +2,9 @@ import React, { useEffect, useCallback, useState } from "react";
 import { MessageField } from "./messagefield";
 import { AUTHORS } from "../utils/constant";
 import { InputText } from "./input";
-import { Header } from "./header";
 import { ChatList } from "./chatlist";
 import { useParams } from "react-router";
 import "../styles/style.css";
-
-// const messagesBot = [
-//   { text: "Привет!", sender: AUTHORS.BOT, id: "1" },
-//   { text: "Как дела?", sender: AUTHORS.BOT, id: "2" },
-// ];
 
 const messagesBot = {
   id1: [{ text: "Привет! комната №1", sender: AUTHORS.BOT, id: "1" }],
