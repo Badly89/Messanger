@@ -7,22 +7,22 @@ import { sendMessage } from "../store/messages/actions";
 import "../styles/style.css";
 import { useDispatch, useSelector } from "react-redux";
 
-const messagesBot = {
-  id1: [{ text: "Привет! комната №1", sender: AUTHORS.BOT, id: "id1-1" }],
-  id2: [{ text: "Привет! комната №2", sender: AUTHORS.BOT, id: "id2-1" }],
-  id3: [{ text: "Привет! комната №3", sender: AUTHORS.BOT, id: "id3-1" }],
-};
+// const messagesBot = {
+//   id1: [{ text: "Привет! комната №1", sender: AUTHORS.BOT, id: "id1-1" }],
+//   id2: [{ text: "Привет! комната №2", sender: AUTHORS.BOT, id: "id2-1" }],
+//   id3: [{ text: "Привет! комната №3", sender: AUTHORS.BOT, id: "id3-1" }],
+// };
 
 export const App = () => {
   const { chatId } = useParams();
 
   console.log(chatId);
-  const state = useSelector((state) => state.messages);
+  const msg = useSelector((state) => state.message);
   // const [message, setMessages] = useState(state.messages);
-  console.log(state);
+
   const dispatch = useDispatch();
   const addMessage = () => {
-    dispatch(sendMessage(state.messages));
+    dispatch(sendMessage(msg));
   };
 
   // const sendMessage = useCallback(
@@ -44,7 +44,7 @@ export const App = () => {
       <div className="layout">
         <ChatList />
         <div className="chat-content">
-          <MessageField messages={state.messages} onSendMessage={addMessage} />
+          <MessageField messageList={msg} onSendMessage={addMessage} />
         </div>
       </div>
     </>

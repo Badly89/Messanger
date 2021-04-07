@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export const ChatList = () => {
   const classes = useStyles();
   const [value, setValue] = useState("");
-  const state = useSelector((state) => state.chats);
+  const chats = useSelector((state) => state.chats);
 
   // const [rooms, setRoom] = useState(chatList);
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ export const ChatList = () => {
   // const addRoom = useCallback((newRoom) => {
   //   setRoom((prevRoom) => [...prevRoom, newRoom]);
   // }, []);
-  // console.log(rooms.id);
+  console.log(chats.rooms);
   return (
     <>
       <div className="list-chat">
@@ -55,7 +55,7 @@ export const ChatList = () => {
           aria-labelledby="nested-list-subheader"
           className={classes.root}
         >
-          {state.rooms.map(({ id, name }) => (
+          {chats.rooms.map(({ id, name }) => (
             <ListItem key={id} button>
               <ListItemIcon>
                 <Link to={`/chats/${id}`}>

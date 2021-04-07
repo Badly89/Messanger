@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { AUTHORS } from "../utils/constant";
 import { InputText } from "./input";
 import "../styles/style.css";
+import { useSelector } from "react-redux";
 
-export const MessageField = ({ messages, onSendMessage }) => {
-  console.log(messages.text);
+export const MessageField = ({ onSendMessage }) => {
+  const msg = useSelector((state) => state.messages);
+  console.log(msg.messages);
+  // console.log(messageList);
   // useEffect(() => {
   //   const lastMessages = messages[chatId]?.[messages[chatId]?.length - 1];
   //   let timeout;
@@ -23,7 +26,7 @@ export const MessageField = ({ messages, onSendMessage }) => {
   return (
     <>
       <div className="message-field">
-        {messages.map(() => (
+        {msg.messages.map(({ id, text, sender }) => (
           <div
             key={id}
             className="message"
@@ -36,7 +39,7 @@ export const MessageField = ({ messages, onSendMessage }) => {
           </div>
         ))}
       </div>
-      <InputText messages={messages} onSendMessage={onSendMessage} />
+      <InputText onSendMessage={onSendMessage} />
     </>
   );
 };

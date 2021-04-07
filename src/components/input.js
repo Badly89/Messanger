@@ -5,7 +5,7 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch } from "react-redux";
 import { sendMessage } from "../store/messages/actions";
 
-export const InputText = ({ messages, onSendMessage }) => {
+export const InputText = ({ onSendMessage }) => {
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
