@@ -26,10 +26,8 @@ export const Routes = () => {
         <Route exact path="/chats">
           <ChatList />
         </Route>
-        <Route path="/chats/:chatId">
-          <App />
-        </Route>
-        <Route exact path="/profile">
+        <Route path="/chats/:chatId" component={App} />
+        <Route path="/profile">
           <Profile />
         </Route>
       </Switch>
