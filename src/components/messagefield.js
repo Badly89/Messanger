@@ -7,21 +7,6 @@ import { useSelector } from "react-redux";
 export const MessageField = ({ onSendMessage }) => {
   const msg = useSelector((state) => state.messages);
   console.log(msg.messages);
-  // console.log(messageList);
-  // useEffect(() => {
-  //   const lastMessages = messages[chatId]?.[messages[chatId]?.length - 1];
-  //   let timeout;
-  //   if (lastMessages?.sender == AUTHORS.HUMAN) {
-  //     timeout = setTimeout(() => {
-  //       sendMessage({
-  //         text: "Не приставай ко мне, я робот!",
-  //         sender: AUTHORS.BOT,
-  //         id: `${chatId}-${messages[chatId].length + 1}`,
-  //       });
-  //     }, 2000);
-  //   }
-  //
-  // }, [messages, sendMessage]);
 
   return (
     <>

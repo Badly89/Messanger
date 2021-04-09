@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
-import { App } from "./app";
+import { App, ConnectApp } from "./app";
 import { Header } from "./header";
 import { ChatList } from "./chatlist";
-import { Profile } from "./profile";
+import { ConnectProfile, Profile } from "./profile";
 import { List, ListItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,9 +26,12 @@ export const Routes = () => {
         <Route exact path="/chats">
           <ChatList />
         </Route>
-        <Route path="/chats/:chatId" component={App} />
+        <Route path="/chats/:chatId">
+          <ConnectApp />
+        </Route>
         <Route path="/profile">
-          <Profile />
+          {/* <Profile /> */}
+          <ConnectProfile />
         </Route>
       </Switch>
     </BrowserRouter>

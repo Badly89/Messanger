@@ -5,7 +5,7 @@ import { ChatList } from "./chatlist";
 import { useParams } from "react-router";
 import { sendMessage } from "../store/messages/actions";
 import "../styles/style.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 
 // const messagesBot = {
 //   id1: [{ text: "Привет! комната №1", sender: AUTHORS.BOT, id: "id1-1" }],
@@ -13,40 +13,65 @@ import { useDispatch, useSelector } from "react-redux";
 //   id3: [{ text: "Привет! комната №3", sender: AUTHORS.BOT, id: "id3-1" }],
 // };
 
-export const App = () => {
+export const App = (props) => {
   const { chatId } = useParams();
 
+  console.log(props);
   console.log(chatId);
   const msg = useSelector((state) => state.message);
-  // const [message, setMessages] = useState(state.messages);
 
-  const dispatch = useDispatch();
-  const addMessage = () => {
-    dispatch(sendMessage(msg));
+  const addMessage = (newMessage) => {
+    props.setNewMsg(newMessage);
   };
-
-  // const sendMessage = useCallback(
-  // (newMessage) => {
-  //   setMessages((prevMess) => ({
-  //     ...prevMess,
-  //     [chatId]: [
-  //       ...prevMess[chatId],
-  //       { ...newMessage, id: prevMess[chatId].length + 1 },
-  //     ],
-  //   }));
-  // },
-
-  // [chatId]
-  // );
+  console.log(msg);
 
   return (
     <>
       <div className="layout">
         <ChatList />
         <div className="chat-content">
-          <MessageField messageList={msg} onSendMessage={addMessage} />
+          <MessageField onSendMessage={addMessage} />
         </div>
       </div>
     </>
   );
 };
+
+const mapStateToProps = (state) => ({
+  message: state.messages,
+  // name: state.,
+});
+
+const mapDispatchToProps = {
+  setNewMsg: sendMessage,
+};
+export const ConnectApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
+// const sendMessage = useCallback(
+// (newMessage) => {
+//   setMessages((prevMess) => ({
+//     ...prevMess,
+//     [chatId]: [
+//       ...prevMess[chatId],
+//       { ...newMessage, id: prevMess[chatId].length + 1 },
+//     ],
+//   }));
+// },
+
+// [chatId]
+// );
+// console.log(messageList);
+// useEffect(() => {
+//   const lastMessages = messages[chatId]?.[messages[chatId]?.length - 1];
+//   let timeout;
+//   if (lastMessages?.sender == AUTHORS.HUMAN) {
+//     timeout = setTimeout(() => {
+//       sendMessage({
+//         text: "Не приставай ко мне, я робот!",
+//         sender: AUTHORS.BOT,
+//         id: `${chatId}-${messages[chatId].length + 1}`,
+//       });
+//     }, 2000);
+//   }
+//
+// }, [messages, sendMessage]);

@@ -29,24 +29,16 @@ export const ChatList = () => {
   const [value, setValue] = useState("");
   const chats = useSelector((state) => state.chats);
 
-  // const [rooms, setRoom] = useState(chatList);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
-  //  e.preventDefault();
-  //  console.log(rooms);
-  //  onAddRoom({ id: `id${rooms.length + 1}`, name: value });
-  //  setValue("");
   const handleClick = () => {
     dispatch(addRoom(value));
     setValue("");
   };
-  // const addRoom = useCallback((newRoom) => {
-  //   setRoom((prevRoom) => [...prevRoom, newRoom]);
-  // }, []);
-  console.log(chats.rooms);
+
   return (
     <>
       <div className="list-chat">

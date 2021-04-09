@@ -3,7 +3,6 @@ import { AUTHORS } from "../utils/constant";
 import { TextField, Fab } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch } from "react-redux";
-import { sendMessage } from "../store/messages/actions";
 
 export const InputText = ({ onSendMessage }) => {
   const [value, setValue] = useState("");
