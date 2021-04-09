@@ -47,6 +47,9 @@ const mapDispatchToProps = {
 };
 export const ConnectApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
+//сдача ДЗ 5
+//отправляем сообщения, без разделения по чатам.
+
 // const sendMessage = useCallback(
 // (newMessage) => {
 //   setMessages((prevMess) => ({
