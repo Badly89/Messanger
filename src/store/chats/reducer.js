@@ -1,11 +1,10 @@
 import { ADD_ROOM } from "./types";
 
 const initialRoom = {
-  rooms: [{ id: "id1", name: "Комната №0" }],
+  rooms: [{ id: "id1", name: "Общая комната" }],
 };
 
 export const chatsReducer = (state = initialRoom, action) => {
-  console.log(state.rooms.length);
   switch (action.type) {
     case ADD_ROOM: {
       return {

@@ -4,14 +4,11 @@ import { InputText } from "./input";
 import "../styles/style.css";
 import { useSelector } from "react-redux";
 
-export const MessageField = ({ onSendMessage }) => {
-  const msg = useSelector((state) => state.messages);
-  console.log(msg.messages);
-
+export const MessageField = ({ messages, onSendMessage }) => {
   return (
     <>
       <div className="message-field">
-        {msg.messages.map(({ id, text, sender }) => (
+        {messages?.map(({ id, text, sender }) => (
           <div
             key={id}
             className="message"

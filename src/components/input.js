@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AUTHORS } from "../utils/constant";
 import { TextField, Fab } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
-import { useDispatch } from "react-redux";
 
 export const InputText = ({ onSendMessage }) => {
   const [value, setValue] = useState("");
@@ -10,10 +9,9 @@ export const InputText = ({ onSendMessage }) => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
-  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSendMessage(value);
+    onSendMessage({ text: value, sender: AUTHORS.HUMAN });
     setValue("");
   };
 
