@@ -1,11 +1,10 @@
-import { ADD_ROOM } from "./types";
+import { ADD_ROOM, DEL_ROOM } from "./types";
 
 const initialRoom = {
-  rooms: [{ id: "id1", name: "Комната №0" }],
+  rooms: [{ id: "id1", name: "Общая комната" }],
 };
 
 export const chatsReducer = (state = initialRoom, action) => {
-  console.log(state.rooms.length);
   switch (action.type) {
     case ADD_ROOM: {
       return {
@@ -16,8 +15,19 @@ export const chatsReducer = (state = initialRoom, action) => {
         ],
       };
     }
+    case DEL_ROOM: {
+      const item = state.rooms.find(({ id }) => id === action.payload);
+      return updateChatList(state, item);
+      // return state.rooms.filter((rooms) => rooms.id !== action.id);
+    }
 
     default:
       return state;
   }
+};
+
+const updateChatList = (state, id) => {
+  const chat = state.rooms.find((chat) => chat.id === id);
+  console.log(state);
+  console.log(chat);
 };

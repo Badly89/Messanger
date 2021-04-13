@@ -75,4 +75,19 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.btn-del {
+  display: none;
+  margin: 0 auto;
+}
+
+.MuiListItem-root:hover .btn-del {
+  display: inline-block;
+}
+
+.MuiListItemIcon-root a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 /*# sourceMappingURL=style.css.map */

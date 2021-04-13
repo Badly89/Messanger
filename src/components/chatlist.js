@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { InputChat } from "./inputchat";
 import { Link, useParams } from "react-router-dom";
 import {
   Fab,
@@ -11,6 +10,8 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SendIcon from "@material-ui/icons/Send";
+import Button from "@material-ui/core/Button";
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { addRoom } from "../store/chats/actions";
 
@@ -64,9 +65,17 @@ export const ChatList = () => {
               onChange={handleChange}
               style={{ fontSize: "16px" }}
             />
-            <Fab onClick={handleClick} size="small" color="primary">
+            <Button
+              onClick={handleClick}
+              type="submit"
+              size="small"
+              variant="contained"
+              color="primary"
+              endIcon={<SendRoundedIcon />}
+            ></Button>
+            {/* <Fab onClick={handleClick} size="small" color="primary">
               <SendIcon />
-            </Fab>
+            </Fab> */}
           </ListItem>
         </List>
       </div>
