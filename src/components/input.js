@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { AUTHORS } from "../utils/constant";
-import { TextField, Fab, Icon } from "@material-ui/core";
-// import Icon from "@material-ui/core/Icon";
+import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
@@ -32,9 +31,6 @@ export const InputText = ({ onSendMessage }) => {
         color="primary"
         endIcon={<SendRoundedIcon />}
       ></Button>
-      {/* <Fab type="submit" size="small" color="primary">
-        <SendRoundedIcon />
-      </Fab> */}
     </form>
   );
 };

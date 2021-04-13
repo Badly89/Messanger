@@ -1,7 +1,6 @@
-import React, { useState, useCallback } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  Fab,
   List,
   ListItem,
   ListItemIcon,
@@ -10,10 +9,12 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SendIcon from "@material-ui/icons/Send";
-import Button from "@material-ui/core/Button";
+import { Button, IconButton } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { addRoom } from "../store/chats/actions";
+// import  from "@material-ui/core/IconButton";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,6 +57,11 @@ export const ChatList = () => {
                 </Link>
                 <SendIcon className={classes.nested} />
               </ListItemIcon>
+              <div className="btn-del">
+                <IconButton aria-label="delete" size="small">
+                  <HighlightOffIcon />
+                </IconButton>
+              </div>
             </ListItem>
           ))}
           <ListItem>
