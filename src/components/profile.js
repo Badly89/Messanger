@@ -7,7 +7,7 @@ export const Profile = (props) => {
   // const profile = useSelector((state) => state.profile);
 
   // const dispatch = useDispatch();
-  console.log(props);
+  // console.log(props);
   const handleChange = (e) => {
     setValue(e.target.value);
   };

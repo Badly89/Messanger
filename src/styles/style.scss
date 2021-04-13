@@ -33,9 +33,11 @@
   height: 470px;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  // justify-content: center;
+  flex-direction: column;
   background-color: lightslategrey;
 }
+
 .chat-content {
   width: 65%;
   height: 520px;
@@ -49,4 +51,16 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.btn-del {
+  display: none;
+  margin: 0 auto;
+}
+.MuiListItem-root:hover .btn-del {
+  display: inline-block;
+}
+
+.MuiListItemIcon-root a {
+  display: flex;
 }

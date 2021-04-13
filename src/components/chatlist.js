@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { InputChat } from "./inputchat";
 import { Link, useParams } from "react-router-dom";
 import {
   Fab,
