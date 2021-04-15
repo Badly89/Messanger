@@ -9,3 +9,5 @@ export const delRoom = (id) => ({
   type: DEL_ROOM,
   payload: id,
 });
+
+// export const actionChatList = id;

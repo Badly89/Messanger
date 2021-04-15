@@ -62,3 +62,22 @@ h1 {
 .MuiListItemIcon-root a {
   display: flex;
 }
+
+.message:hover .btn-del {
+  display: inline-block;
+}
+
+.users-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.users-items {
+  width: 100%;
+}
+.MuiCard-root {
+  padding: 10px 25px;
+}

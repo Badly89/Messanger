@@ -1,7 +1,7 @@
 import { ADD_ROOM, DEL_ROOM } from "./types";
 
 const initialRoom = {
-  rooms: [{ id: "id1", name: "Общая комната" }],
+  rooms: [{ id: "id0", name: "Общая комната" }],
 };
 
 export const chatsReducer = (state = initialRoom, action) => {
@@ -16,18 +16,17 @@ export const chatsReducer = (state = initialRoom, action) => {
       };
     }
     case DEL_ROOM: {
-      const item = state.rooms.find(({ id }) => id === action.payload);
-      return updateChatList(state, item);
-      // return state.rooms.filter((rooms) => rooms.id !== action.id);
+      const item = { ...state.rooms };
+      // const item = state.rooms.filter(({ id }) => id === action.payload.id);
+      console.log(item);
+      // console.log(action.payload);
+      return {
+        ...state,
+        rooms: state.rooms.filter((item) => item.id !== action.payload.id),
+      };
     }
 
     default:
       return state;
   }
-};
-
-const updateChatList = (state, id) => {
-  const chat = state.rooms.find((chat) => chat.id === id);
-  console.log(state);
-  console.log(chat);
 };

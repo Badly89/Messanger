@@ -5,6 +5,8 @@ const initialMessage = {
   messages: {},
 };
 
+// dispatch(delMessage(message));
+
 export const msgReducer = (state = initialMessage, action) => {
   switch (action.type) {
     case SEND_MESSAGE: {
@@ -20,8 +22,20 @@ export const msgReducer = (state = initialMessage, action) => {
       };
     }
     case DEL_MESSAGE: {
-      console.log("удалил");
-      return {};
+      const index = action.payload.message;
+      // const indexF = copyArr.indexOd(id, 1);
+      console.log(index);
+      return {
+        ...state,
+        messages: state.messages.filter((item) => item !== action.payload),
+
+        // ...state.messages,
+        // [action.payload.chatId]: [
+        // ...state.messages[action.payload.chatId].slice(0, index),
+        // ...state.messages[action.payload.chatId].slice(index + 1),
+        // ],
+        // },
+      };
     }
     default:
       return state;

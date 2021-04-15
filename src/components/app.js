@@ -1,31 +1,41 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { MessageField } from "./messagefield";
-import { AUTHORS } from "../utils/constant";
+// import { AUTHORS } from "../utils/constant";
 import { ChatList } from "./chatlist";
 import { useParams } from "react-router";
-import { sendMessage, sendMessageWithTimeout } from "../store/messages/actions";
+import { selectMessages } from "../store/messages/selectors";
+import { actionDelMessage, actionMessage } from "../store/messages/actions";
 import "../styles/style.css";
 import { useDispatch, useSelector, connect } from "react-redux";
 
-export const App = (props) => {
+export const App = () => {
   const { chatId } = useParams();
-
+  const messages = useSelector(selectMessages);
+  const dispatch = useDispatch();
   const sendNewMessage = useCallback(
     (newMessage) => {
-      props.setNewMsg(chatId, {
-        ...newMessage,
-        id: `${chatId}-${(props.messages[chatId]?.length || 0) + 1}`,
-      });
+      dispatch(
+        actionMessage(chatId, {
+          ...newMessage,
+          id: `${chatId}-${(messages[chatId]?.length || 0) + 1}`,
+        })
+      );
     },
-    [chatId, props.messages]
+    [chatId, messages]
   );
-  useEffect(() => {
-    props.botMessage(chatId, {
-      text: "Не приставай ко мне, я робот!",
-      sender: AUTHORS.BOT,
-      id: `${chatId}-${props.messages[chatId]?.length + 1}`,
-    });
-  }, [props.messages, sendNewMessage]);
+  console.log(messages);
+  const delMessages = useCallback(
+    (selMessage) => {
+      dispatch(
+        actionDelMessage(chatId, {
+          ...selMessage,
+          messages,
+          // id: `${chatId}-${messages[chatId]},
+        })
+      );
+    },
+    [chatId, messages]
+  );
 
   return (
     <>
@@ -33,22 +43,12 @@ export const App = (props) => {
         <ChatList />
         <div className="chat-content">
           <MessageField
-            messages={props.messages[chatId]}
+            messages={messages[chatId]}
             onSendMessage={sendNewMessage}
+            onDelMessage={delMessages}
           />
         </div>
       </div>
     </>
   );
 };
-
-const mapStateToProps = (state) => ({
-  messages: state.messages.messages,
-  // chatId: state.messages.messages.chatId,
-});
-
-const mapDispatchToProps = {
-  setNewMsg: sendMessage,
-  botMessage: sendMessageWithTimeout,
-};
-export const ConnectApp = connect(mapStateToProps, mapDispatchToProps)(App);

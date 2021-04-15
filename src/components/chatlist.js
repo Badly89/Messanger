@@ -12,7 +12,7 @@ import SendIcon from "@material-ui/icons/Send";
 import { Button, IconButton } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { addRoom } from "../store/chats/actions";
+import { addRoom, delRoom } from "../store/chats/actions";
 // import  from "@material-ui/core/IconButton";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
@@ -40,6 +40,9 @@ export const ChatList = () => {
     dispatch(addRoom(value));
     setValue("");
   };
+  const handleDelete = (id) => {
+    dispatch(delRoom(id));
+  };
 
   return (
     <>
@@ -58,7 +61,11 @@ export const ChatList = () => {
                 <SendIcon className={classes.nested} />
               </ListItemIcon>
               <div className="btn-del">
-                <IconButton aria-label="delete" size="small">
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={handleDelete}
+                >
                   <HighlightOffIcon />
                 </IconButton>
               </div>
