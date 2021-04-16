@@ -33,7 +33,7 @@
   height: 470px;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  // justify-content: center;
   background-color: lightslategrey;
 }
 .chat-content {
@@ -49,4 +49,35 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.btn-del {
+  display: none;
+  margin: 0 auto;
+}
+.MuiListItem-root:hover .btn-del {
+  display: inline-block;
+}
+
+.MuiListItemIcon-root a {
+  display: flex;
+}
+
+.message:hover .btn-del {
+  display: inline-block;
+}
+
+.users-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.users-items {
+  width: 100%;
+}
+.MuiCard-root {
+  padding: 10px 25px;
 }

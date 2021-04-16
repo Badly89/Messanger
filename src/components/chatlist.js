@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from "react";
-import { InputChat } from "./inputchat";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  Fab,
   List,
   ListItem,
   ListItemIcon,
@@ -11,8 +9,12 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SendIcon from "@material-ui/icons/Send";
+import { Button, IconButton } from "@material-ui/core";
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { addRoom } from "../store/chats/actions";
+import { addRoom, delRoom } from "../store/chats/actions";
+// import  from "@material-ui/core/IconButton";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +40,9 @@ export const ChatList = () => {
     dispatch(addRoom(value));
     setValue("");
   };
+  const handleDelete = (id) => {
+    dispatch(delRoom(id));
+  };
 
   return (
     <>
@@ -55,6 +60,15 @@ export const ChatList = () => {
                 </Link>
                 <SendIcon className={classes.nested} />
               </ListItemIcon>
+              <div className="btn-del">
+                <IconButton
+                  aria-label="delete"
+                  size="small"
+                  onClick={handleDelete}
+                >
+                  <HighlightOffIcon />
+                </IconButton>
+              </div>
             </ListItem>
           ))}
           <ListItem>
@@ -64,9 +78,17 @@ export const ChatList = () => {
               onChange={handleChange}
               style={{ fontSize: "16px" }}
             />
-            <Fab onClick={handleClick} size="small" color="primary">
+            <Button
+              onClick={handleClick}
+              type="submit"
+              size="small"
+              variant="contained"
+              color="primary"
+              endIcon={<SendRoundedIcon />}
+            ></Button>
+            {/* <Fab onClick={handleClick} size="small" color="primary">
               <SendIcon />
-            </Fab>
+            </Fab> */}
           </ListItem>
         </List>
       </div>

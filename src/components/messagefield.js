@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useState } from "react";
 import { AUTHORS } from "../utils/constant";
 import { InputText } from "./input";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { IconButton } from "@material-ui/core";
 import "../styles/style.css";
-import { useSelector } from "react-redux";
 
-export const MessageField = ({ onSendMessage }) => {
-  const msg = useSelector((state) => state.messages);
-  console.log(msg.messages);
-
+export const MessageField = ({ messages, onSendMessage, onDelMessage }) => {
+  // const [value, setValue] = useState(messages);
+  console.log(messages);
+  const handleDelete = (messages) => {
+    onDelMessage(messages);
+  };
   return (
     <>
       <div className="message-field">
-        {msg.messages.map(({ id, text, sender }) => (
+        {messages?.map(({ id, text, sender }) => (
           <div
             key={id}
             className="message"
@@ -21,6 +24,15 @@ export const MessageField = ({ onSendMessage }) => {
           >
             <div>{text}</div>
             <div className="message-sender">{sender}</div>
+            <div className="btn-del">
+              <IconButton
+                aria-label="delete"
+                size="small"
+                onClick={handleDelete}
+              >
+                <HighlightOffIcon />
+              </IconButton>
+            </div>
           </div>
         ))}
       </div>
