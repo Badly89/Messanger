@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../store/users/actions";
 
 export const UsersInfo = () => {
-  const dispantch = useDispatch();
+  const dispatch = useDispatch();
   //   const test = useSelector((state) => state);
   //   console.log(test);
   const infoUsers = useSelector((state) => state.users.list);
@@ -12,7 +12,7 @@ export const UsersInfo = () => {
   const loading = useSelector((state) => state.users.request.loading);
 
   const requestUsers = () => {
-    dispantch(getUserInfo());
+    dispatch(getUserInfo());
   };
   useEffect(() => {
     requestUsers();
