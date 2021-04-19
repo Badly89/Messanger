@@ -23,14 +23,12 @@ export const App = () => {
     },
     [chatId, messages]
   );
-  console.log(messages);
   const delMessages = useCallback(
     (selMessage) => {
       dispatch(
         actionDelMessage(chatId, {
           ...selMessage,
-          messages,
-          // id: `${chatId}-${messages[chatId]},
+          id: `${chatId}-${(messages[chatId]?.length || 0) - 1}`,
         })
       );
     },

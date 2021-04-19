@@ -6,10 +6,8 @@ import { IconButton } from "@material-ui/core";
 import "../styles/style.css";
 
 export const MessageField = ({ messages, onSendMessage, onDelMessage }) => {
-  // const [value, setValue] = useState(messages);
-  console.log(messages);
-  const handleDelete = (messages) => {
-    onDelMessage(messages);
+  const handleDelete = (e) => {
+    onDelMessage(e.target.id);
   };
   return (
     <>
@@ -28,8 +26,10 @@ export const MessageField = ({ messages, onSendMessage, onDelMessage }) => {
               <IconButton
                 aria-label="delete"
                 size="small"
+                id={id}
                 onClick={handleDelete}
               >
+                {id} -
                 <HighlightOffIcon />
               </IconButton>
             </div>

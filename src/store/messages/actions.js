@@ -6,43 +6,53 @@ export const sendMessage = (chatId, message) => ({
   payload: { message, chatId },
 });
 
-export const delMessage = (message) => ({
+export const delMessage = (chatId, message) => ({
   type: DEL_MESSAGE,
-  payload: { message },
+  payload: { message, chatId },
 });
 
 export const actionMessage = (chatId, message) => async (
   dispatch,
   getState
 ) => {
-  dispatch(sendMessage(chatId, message));
+  try {
+    dispatch(sendMessage(chatId, message));
 
-  if (chatId !== null) {
-    const res = await fetch(
-      `https://www.botlibre.com/rest/api/form-chat?instance=165&message="${message.text}"&application=428262090517998158`
-    );
+    if (chatId !== null) {
+      const res = await fetch(
+        `https://www.botlibre.com/rest/api/form-chat?instance=165&message="${message.text}"&application=428262090517998158`
+      );
 
-    const response = await res.text();
-    const answer = response.substring(
-      response.lastIndexOf("<message>") + 9,
-      response.lastIndexOf("</message>")
-    );
+      const response = await res.text();
+      const answer = response.substring(
+        response.lastIndexOf("<message>") + 9,
+        response.lastIndexOf("</message>")
+      );
 
-    const messLength = getState().messages.messages[chatId]?.length;
+      const messLength = getState().messages.messages[chatId]?.length;
 
-    dispatch(
-      sendMessage(chatId, {
-        sender: AUTHORS.BOT,
-        text: answer,
-        id: `${chatId}-${messLength + 1}`,
-      })
-    );
+      dispatch(
+        sendMessage(chatId, {
+          text: answer,
+          sender: AUTHORS.BOT,
+          id: `${chatId}-${messLength + 1}`,
+        })
+      );
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
-export const actionDelMessage = (message) => (dispatch, getState) => {
-  dispatch(delMessage(message));
-  const selMessage = getState().messages;
-  console.log(selMessage);
+export const actionDelMessage = (chatId, message) => async (
+  dispatch,
+  getState
+) => {
+  let arr = getState().messages.messages[chatId];
+  let arr2 = Object.keys(arr).filter((item) => item.id !== message.id);
+  console.log(arr2); //получили id сообщений в комната, но не сам ID из объекта
+  console.log(arr); //массив объектов
+  // console.log(message);
+  dispatch(delMessage(chatId, arr));
   console.log("update");
 };

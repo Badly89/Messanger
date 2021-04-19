@@ -22,19 +22,16 @@ export const msgReducer = (state = initialMessage, action) => {
       };
     }
     case DEL_MESSAGE: {
-      const index = action.payload.message;
-      // const indexF = copyArr.indexOd(id, 1);
+      const index = Object.values(action.payload.message);
       console.log(index);
+
       return {
         ...state,
-        messages: state.messages.filter((item) => item !== action.payload),
-
-        // ...state.messages,
+        messages: { ...state.messages },
         // [action.payload.chatId]: [
         // ...state.messages[action.payload.chatId].slice(0, index),
         // ...state.messages[action.payload.chatId].slice(index + 1),
         // ],
-        // },
       };
     }
     default:
