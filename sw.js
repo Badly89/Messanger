@@ -27,13 +27,14 @@ self.addEventListener("install", function (event) {
     event.waitUntil(
       caches.open(CACHE_NAME).then(function (cache) {
         // Получаем данные из манифеста (они кэшируются)
-        fetch("manifest/manifest.json")
+        fetch("/manifest/manifest.json")
           .then((response) => {
             response.json();
           })
           .then((assets) => {
             // Открываем и кэшируем нужные страницы и файлы
-            const urlsToCache = ["", "/chats/*"];
+            const urlsToCache = ["", "../src/*"];
+
             cache.addAll(urlsToCache);
             console.log("cached");
           });

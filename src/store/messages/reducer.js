@@ -22,16 +22,16 @@ export const msgReducer = (state = initialMessage, action) => {
       };
     }
     case DEL_MESSAGE: {
-      const index = Object.values(action.payload.message);
-      console.log(index);
+      const text = action.payload.message;
+      const arr = state.messages[action.payload.chatId];
+      const filterMessage = arr.filter((item) => item.id !== text.id);
 
       return {
         ...state,
-        messages: { ...state.messages },
-        // [action.payload.chatId]: [
-        // ...state.messages[action.payload.chatId].slice(0, index),
-        // ...state.messages[action.payload.chatId].slice(index + 1),
-        // ],
+        messages: {
+          ...state.messages,
+          [action.payload.chatId]: [...filterMessage],
+        },
       };
     }
     default:

@@ -1,5 +1,7 @@
+import React from "react";
 import { DEL_MESSAGE, SEND_MESSAGE } from "./types";
 import { AUTHORS } from "../../utils/constant";
+import { Redirect } from "react-router";
 
 export const sendMessage = (chatId, message) => ({
   type: SEND_MESSAGE,
@@ -48,11 +50,11 @@ export const actionDelMessage = (chatId, message) => async (
   dispatch,
   getState
 ) => {
-  let arr = getState().messages.messages[chatId];
-  let arr2 = Object.keys(arr).filter((item) => item.id !== message.id);
-  console.log(arr2); //получили id сообщений в комната, но не сам ID из объекта
-  console.log(arr); //массив объектов
-  // console.log(message);
-  dispatch(delMessage(chatId, arr));
+  console.log(getState().messages);
+  if (getState().messages == "undefined" && getState().messages == 0) {
+    console.log("Нет сообщений");
+  }
+  dispatch(delMessage(chatId, message));
+
   console.log("update");
 };

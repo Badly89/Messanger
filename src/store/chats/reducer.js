@@ -16,13 +16,9 @@ export const chatsReducer = (state = initialRoom, action) => {
       };
     }
     case DEL_ROOM: {
-      const item = { ...state.rooms };
-      // const item = state.rooms.filter(({ id }) => id === action.payload.id);
-      console.log(item);
-      // console.log(action.payload);
       return {
         ...state,
-        rooms: state.rooms.filter((item) => item.id !== action.payload.id),
+        rooms: [...state.rooms.filter((item) => item.id !== action.payload)],
       };
     }
 
