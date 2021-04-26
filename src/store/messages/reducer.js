@@ -1,8 +1,8 @@
 import { AUTHORS } from "../../utils/constant";
-import { SEND_MESSAGE } from "./types";
+import { SEND_MESSAGE, SEND_BOT, DEL_MESSAGE } from "./types";
 
 const initialMessage = {
-  messages: [],
+  messages: {},
 };
 
 export const msgReducer = (state = initialMessage, action) => {
@@ -10,18 +10,19 @@ export const msgReducer = (state = initialMessage, action) => {
     case SEND_MESSAGE: {
       return {
         ...state,
-        messages: [
+        messages: {
           ...state.messages,
-          {
-            idChat: `idChat${state.messages.length + 1}`,
-            text: action.payload,
-            sender: AUTHORS.HUMAN,
-            id: `id${state.messages.length + 1}`,
-          },
-        ],
+          [action.payload.chatId]: [
+            ...(state.messages[action.payload.chatId] || []),
+            action.payload.message,
+          ],
+        },
       };
     }
-
+    case DEL_MESSAGE: {
+      console.log("удалил");
+      return {};
+    }
     default:
       return state;
   }
