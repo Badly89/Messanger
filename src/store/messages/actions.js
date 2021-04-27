@@ -50,11 +50,5 @@ export const actionDelMessage = (chatId, message) => async (
   dispatch,
   getState
 ) => {
-  console.log(getState().messages);
-  if (getState().messages == "undefined" && getState().messages == 0) {
-    console.log("Нет сообщений");
-  }
   dispatch(delMessage(chatId, message));
-
-  console.log("update");
 };

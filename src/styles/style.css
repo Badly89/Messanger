@@ -4,9 +4,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .message-field {
@@ -18,13 +18,9 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #e2e2e2;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  height: 100%;
+  height: 80vh;
   padding: 20px;
   overflow-y: scroll;
-  margin-right: 50px;
 }
 
 .message {
@@ -52,11 +48,6 @@
   background-color: lightslategrey;
 }
 
-.chat-content {
-  width: 65%;
-  height: 520px;
-}
-
 h1 {
   text-align: center;
 }
@@ -76,9 +67,11 @@ h1 {
 .btn-del {
   display: none;
   margin: 0 auto;
+  padding-left: 5px;
 }
 
-.MuiListItem-root:hover .btn-del {
+.message:hover .btn-del,
+.list-group:hover .btn-del {
   display: inline-block;
 }
 

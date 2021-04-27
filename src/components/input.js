@@ -1,8 +1,6 @@
 import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import { AUTHORS } from "../utils/constant";
-import { TextField } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
 export const InputText = ({ onSendMessage }) => {
   const [value, setValue] = useState("");
@@ -17,20 +15,14 @@ export const InputText = ({ onSendMessage }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
+    <Form onSubmit={handleSubmit}>
+      <Form.Control
         type="text"
         value={value}
         onChange={handleChange}
         style={{ fontSize: "16px" }}
       />
-      <Button
-        type="submit"
-        size="small"
-        variant="contained"
-        color="primary"
-        endIcon={<SendRoundedIcon />}
-      ></Button>
-    </form>
+      {/* <Button variant="contained" type="submit" size="small" /> */}
+    </Form>
   );
 };

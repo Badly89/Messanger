@@ -2,18 +2,17 @@
   height: 100%;
   margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   // flex-direction: column;
 }
 .message-field {
   display: flex;
   flex-direction: column;
   background-color: #e2e2e2;
-  height: fit-content;
-  height: 100%;
+
+  height: 80vh;
   padding: 20px;
   overflow-y: scroll;
-  margin-right: 50px;
 }
 
 .message {
@@ -37,8 +36,8 @@
   background-color: lightslategrey;
 }
 .chat-content {
-  width: 65%;
-  height: 520px;
+  // width: 65%;
+  // height: 520px;
 }
 
 h1 {
@@ -54,8 +53,11 @@ h1 {
 .btn-del {
   display: none;
   margin: 0 auto;
+
+  padding-left: 5px;
 }
-.MuiListItem-root:hover .btn-del {
+.message:hover .btn-del,
+.list-group:hover .btn-del {
   display: inline-block;
 }
 

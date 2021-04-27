@@ -1,5 +1,6 @@
-import { List, ListItem, Typography, Card } from "@material-ui/core";
+// import { List, ListItem, Typography, Card } from "@material-ui/core";
 import React, { useEffect } from "react";
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../store/users/actions";
 
@@ -30,27 +31,23 @@ export const UsersInfo = () => {
   }
   return (
     <>
-      <List className="users-list">
+      <ListGroup className="users-list">
         {infoUsers?.map((info) => (
-          <ListItem
+          <ListGroupItem
             key={info.id}
             alignItems="flex-start"
             className="users-items"
           >
             <Card>
-              <Typography color="textSecondary" gutterBottom>
-                {info.name}
-              </Typography>
-              <Typography variant="h5" component="h2">
-                {info.username}
-              </Typography>
-              <Typography variant="body2" component="p">
-                {info.email}
-              </Typography>
+              <Card.Body>
+                <Card.Title>{info.name}</Card.Title>
+                <Card.Subtitle> {info.username}</Card.Subtitle>
+                <Card.Subtitle> {info.email}</Card.Subtitle>
+              </Card.Body>
             </Card>
-          </ListItem>
+          </ListGroupItem>
         ))}
-      </List>
+      </ListGroup>
     </>
   );
 };

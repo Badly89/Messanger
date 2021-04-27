@@ -1,51 +1,30 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  TextField,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import SendIcon from "@material-ui/icons/Send";
-import { Button, IconButton } from "@material-ui/core";
-import SendRoundedIcon from "@material-ui/icons/SendRounded";
-import { useDispatch, useSelector } from "react-redux";
-import { addRoom, delChat, delRoom } from "../store/chats/actions";
-// import  from "@material-ui/core/IconButton";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import { chatSelect } from "../store/chats/selectors";
-import { actionDelMessage } from "../store/messages/actions";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: 360,
-  },
-  nested: {
-    paddingLeft: theme.spacing(2),
-  },
-}));
+import { useDispatch, useSelector } from "react-redux";
+import { addRoom, delChat } from "../store/chats/actions";
+
+import { chatSelect } from "../store/chats/selectors";
+import { Form, ListGroup, Button } from "react-bootstrap";
+import { selectMessages } from "../store/messages/selectors";
 
 export const ChatList = () => {
-  const classes = useStyles();
   const [value, setValue] = useState("");
-
   const rooms = useSelector(chatSelect);
 
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+  // console.log(selRoom);
 
-  const handleClick = () => {
+  // const selRoom = Object.values(messages.map((item) => item.id == rooms.id));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(addRoom(value));
     setValue("");
   };
-  // const handleDelete = (e) => {
-  //   dispatch(delChat(e.target.id));
-  // };
 
   const handleDelete = (id) => {
     dispatch(delChat(id));
@@ -53,51 +32,64 @@ export const ChatList = () => {
 
   return (
     <>
-      <aside className="list-chat">
-        <div>
-          <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            className={classes.root}
-          >
-            {rooms.map(({ id, name }) => (
-              <ListItem key={id} button>
-                <ListItemIcon>
-                  <Link to={`/chats/${id}`}>
-                    <ListItemText primary={name} />
+      <div className="left-side">
+        {rooms.length === 0 ? (
+          <>
+            <p>Создайте комнату</p>
+            <Redirect to="/chats" />
+            <div>
+              <Form onSubmit={handleSubmit}>
+                <Form.Control
+                  type="text"
+                  value={value}
+                  onChange={handleChange}
+                  style={{ fontSize: "16px" }}
+                ></Form.Control>
+
+                <Button type="submit" size="sm">
+                  Создать
+                </Button>
+              </Form>
+            </div>
+          </>
+        ) : (
+          <>
+            <ListGroup className="flex-column">
+              {rooms.map(({ id, name }) => (
+                <ListGroup.Item key={id} variant="primary">
+                  <Link to={`/chats/${id}`} className="text-decoration-none">
+                    {name}
                   </Link>
-                  <SendIcon className={classes.nested} />
-                </ListItemIcon>
-                <div className="btn-del">
-                  <IconButton
-                    aria-label="delete"
-                    size="small"
-                    onClick={() => handleDelete(id)}
-                  >
-                    <HighlightOffIcon />
-                  </IconButton>
-                </div>
-              </ListItem>
-            ))}
-            <ListItem>
-              <TextField
-                type="text"
-                value={value}
-                onChange={handleChange}
-                style={{ fontSize: "16px" }}
-              />
-              <Button
-                onClick={handleClick}
-                type="submit"
-                size="small"
-                variant="contained"
-                color="primary"
-                endIcon={<SendRoundedIcon />}
-              ></Button>
-            </ListItem>
-          </List>
-        </div>
-      </aside>
+
+                  <div className="btn-del">
+                    <Button
+                      size="sm"
+                      variant="outline-danger"
+                      onClick={() => handleDelete(id)}
+                    >
+                      удалить
+                    </Button>
+                  </div>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <div>
+              <Form onSubmit={handleSubmit}>
+                <Form.Control
+                  type="text"
+                  value={value}
+                  onChange={handleChange}
+                  style={{ fontSize: "16px" }}
+                ></Form.Control>
+
+                <Button type="submit" size="sm">
+                  Создать
+                </Button>
+              </Form>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

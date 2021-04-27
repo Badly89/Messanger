@@ -5,8 +5,6 @@ const initialMessage = {
   messages: {},
 };
 
-// dispatch(delMessage(message));
-
 export const msgReducer = (state = initialMessage, action) => {
   switch (action.type) {
     case SEND_MESSAGE: {
@@ -30,7 +28,7 @@ export const msgReducer = (state = initialMessage, action) => {
         ...state,
         messages: {
           ...state.messages,
-          [action.payload.chatId]: [...filterMessage],
+          [action.payload.chatId]: [...(filterMessage || [])],
         },
       };
     }
